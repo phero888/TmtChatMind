@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: tmtchatmind
+  datasource:
+    url: jdbc:postgresql://localhost:5433/tmtchatmind
+    username: ${tmtchatmind.datasource.username}
+    password: ${tmtchatmind.datasource.password}
+    driver-class-name: org.postgresql.Driver
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: ${tmtchatmind.mail.username}
+    password: ${tmtchatmind.mail.password}
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  ai:
+    deepseek:
+      api-key: ${tmtchatmind.ai.deepseek.api-key}
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-chat
+    zhipuai:
+      api-key: ${tmtchatmind.ai.zhipuai.api-key}
+      base-url: https://open.bigmodel.cn/api/paas
+      chat:
+        options:
+          model: glm-4.6
+mybatis:
+  type-aliases-package: com.tmt.tmtchatmind.model.entity
+  mapper-locations: classpath:mapper/*.xml
+  type-handlers-package: com.tmt.tmtchatmind.typehandler
+
+document:
+  storage:
+    base-path: ./data/documents
